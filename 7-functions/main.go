@@ -4,7 +4,19 @@ import "fmt"
 
 func main() {
 	numbers := []float64 {6, 2, 1, 5, 5, 5}
-	fmt.Println(average(numbers))
+	mean, mode, median := average(numbers)
+	fmt.Printf("Mean: %.1f\n", mean)
+	fmt.Printf("Mode: %.1f\n", mode)
+	fmt.Printf("Median: %.1f\n", median)
+	fmt.Printf("Total: %.1f\n", add(numbers...))
+}
+
+func add(args ...float64) float64 {
+	total := 0.0
+	for _, value := range args {
+		total += value
+	}
+	return total
 }
 
 func average(numbers []float64) (float64, float64, float64) {
