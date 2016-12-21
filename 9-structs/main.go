@@ -6,21 +6,7 @@ import (
 )
 
 func main() {
-	dogs := []animals.AnimalInterface {
-		animals.Dog{
-			Animal: animals.Animal {
-				Name: "Fido",
-				Age: 2,
-			},
-			BarkStrength: 8,
-		},
-		animals.Dog{
-			Animal: animals.Animal {
-				Name: "Rover",
-				Age: 4,
-			},
-			BarkStrength: 5,
-		},
+	itsRaining := []animals.AnimalInterface {
 		animals.Cat{
 			Animal: animals.Animal{
 				Name: "Snowball",
@@ -35,9 +21,23 @@ func main() {
 			},
 			MeowStrength: 4,
 		},
+		animals.Dog{
+			Animal: animals.Animal {
+				Name: "Fido",
+				Age: 2,
+			},
+			BarkStrength: 8,
+		},
+		animals.Dog{
+			Animal: animals.Animal {
+				Name: "Rover",
+				Age: 4,
+			},
+			BarkStrength: 5,
+		},
 	}
 
-	for _, value := range dogs {
+	for _, value := range itsRaining {
 		fmt.Printf("%s says %s \n", value.GetName(), value.Talk())
 	}
 }
