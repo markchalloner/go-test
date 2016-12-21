@@ -9,9 +9,14 @@ func main() {
 	fmt.Printf("Mode: %.1f\n", mode)
 	fmt.Printf("Median: %.1f\n", median)
 	fmt.Printf("Total: %.1f\n", add(numbers...))
+	fmt.Println()
+
+	incrementor := makeIncrementor(0)
+	fmt.Println(incrementor())
+	fmt.Println(incrementor())
 }
 
-func add(args ...float64) float64 {
+func add(args ...float64) (float64) {
 	total := 0.0
 	for _, value := range args {
 		total += value
@@ -53,4 +58,11 @@ func average(numbers []float64) (float64, float64, float64) {
 	}
 
 	return mean, mode, median
+}
+
+func makeIncrementor(startNum float64) (func() float64) {
+	return func() (float64) {
+		startNum++
+		return startNum
+	}
 }
