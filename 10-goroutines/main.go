@@ -4,7 +4,7 @@ import "fmt"
 import "time"
 
 func main() {
-	var timeChannel chan string = make(chan string)
+	var timeChannel chan time.Time = make(chan time.Time)
 
 	emitTime := createTimeEmitter()
 
@@ -15,21 +15,21 @@ func main() {
 	fmt.Scanln(&input)
 }
 
-func speak(timeChannel chan string) {
+func speak(timeChannel chan time.Time) {
 	for {
-		timeString := <- timeChannel
-		fmt.Printf("The time is %s\n...", timeString)
+		timeStruct := <- timeChannel
+		fmt.Printf("The time is %s...\n", timeStruct.Format("15:04"))
 	}
 }
 
-func createTimeEmitter() (func(chan string)) {
+func createTimeEmitter() (func(chan time.Time)) {
 	ticker := time.NewTicker(1 * time.Second)
 	prev := time.Now().Add(-time.Minute);
-	return func(timeChannel chan string) {
+	return func(timeChannel chan time.Time) {
 		for {
 			now := <- ticker.C
 			if now.Minute() != prev.Minute() {
-				timeChannel <- now.Format("15:04")
+				timeChannel <- now
 				prev = now
 			}
 		}
